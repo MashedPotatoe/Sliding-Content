@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Concept 1</title>
+
+    <link rel="stylesheet" type="text/css" href="../dependencies/waves.min.css">
+    <link rel="stylesheet" type="text/css" href="../sliding-content.css">
+
+    <script type="text/javascript" src="../dependencies/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../dependencies/waves.js"></script>
+
+    <script type="text/javascript" src="../sliding-content.js"></script>
+</head>
+<body>
+<div class="app-bar"><span class="app-bar-title">FAKE APPBAR</span>
+    <button style="float: right;" id="right">Right</button>
+    <button style="float: right;" id="left">Left</button>
+</div>
+<div class="sliding-content" id="hi">
+    <iframe style="border: none;" src="https://www.youtube.com/embed/WQvueRcPAWY" class="content" allowfullscreen></iframe>
+    <div class="content"><h1 class="title">App Wall</h1></div>
+    <iframe style="border: none;" src="https://google.github.io/material-design-icons/" class="content"/>
+    </iframe>
+    <div class="content"><h1 class="title">Top Talker</h1></div>
+    <iframe style="border: none;" src="http://haselkern.github.io/Minecraft-ArmorStand/" class="content"/>
+    </iframe>
+</div>
+
+<script>
+    $(function () {
+        // initialize
+        var slide = $("#hi").initSlide();
+        slide.setNames(["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"]);
+        slide.setNameElement($('.app-bar-title'));
+        Waves.init();
+
+        $("#left").on('click', function () {
+            slide.changeSlide(slide.getPosition() - 1);
+        });
+
+        $("#right").on('click', function () {
+            slide.changeSlide(slide.getPosition() + 1);
+        });
+    });
+</script>
+</body>
+</html>
