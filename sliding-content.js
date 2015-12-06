@@ -10,15 +10,21 @@
 
 	// Declare the method
 
-	$.fn.initSlide = function() {
+	var defaultOps = {
+		name : null,
+		autoSlide : false,
+		autoSlideTime : 5000
+	}
+
+	$.fn.initSlide = function(userObj) {
+		var options = $.extend({}, defaultOps, userObj);
+
 		var obj = this;
 		var $slide = this;
 		var numberOfSlides = this.children().length;
 
 
 		this.position = 0;
-		this.nameElement;
-		this.names;
 
 		this.append(htmlString + '<div class="indicators"></div>');
 
@@ -28,8 +34,7 @@
 			$('.indicators', $slide).append('<div class="indicator"></div>');
 		$('.indicators', $slide).children().first().addClass('active');
 
-		var value = $('.indicators', $slide).children().length * 28;
-		console.log(value);
+		var value = $('.indicators', $slide).children().length * 22 + 22;
 		$('.indicators', $slide).css('width', value);
 		this.changeSlide = function(i) {
 			if (!(i < 0) && !(i >= numberOfSlides)) {
@@ -53,10 +58,8 @@
 					$(this).css('transform', "translateX(" + -obj.position * (window.innerWidth + 4.5) + "px)");
 				});
 
-				try {
-					$(obj.nameElement).text(obj.names[obj.position]);
-				} catch(e) {
-
+				if (options.name != null) {
+					$(options.name.nameElement).text(options.name.names[obj.position]);
 				}
 
 				$('.indicators', $slide).children().each(function() {
@@ -94,13 +97,28 @@
 		};
 
 		this.setNameElement = function(el) {
-			this.nameElement = el;
-			$(obj.nameElement).text(obj.names[obj.position]);
+			options.name.nameElement = el;
+			$(options.name.nameElement).text(options.name.names[obj.position]);
 		}
 
 		this.setNames = function(names) {
-			this.names = names;
+			options.name.names = names;
 		};
+
+		if (options.name != null) {
+			obj.setNameElement(options.name.nameElement);
+			obj.setNames(options.name.names);
+		}
+
+		if (options.autoSlide) {
+			setInterval(function() {
+				if (obj.position != numberOfSlides - 1) {
+					obj.changeSlide(obj.position + 1);
+				} else {
+					obj.changeSlide(0);
+				}
+			}, options.autoSlideTime);
+		}
 
 		return this;
 	};

@@ -10,6 +10,37 @@
     <script type="text/javascript" src="../dependencies/waves.js"></script>
 
     <script type="text/javascript" src="../sliding-content.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            padding-top: 56px;
+        }
+
+        body * {
+            box-sizing: border-box;
+        }
+
+        .app-bar {
+            height: 56px;
+            width: 100%;
+            padding: 0 16px;
+            font-size: 18px;
+            line-height: 56px;
+            background: #2196f3;
+            color: #fff;
+            box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+            z-index: 100;
+            position: absolute;
+            top: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="app-bar"><span class="app-bar-title">FAKE APPBAR</span>
@@ -17,7 +48,8 @@
     <button style="float: right;" id="left">Left</button>
 </div>
 <div class="sliding-content" id="hi">
-    <iframe style="border: none;" src="https://www.youtube.com/embed/WQvueRcPAWY" class="content" allowfullscreen></iframe>
+    <iframe style="border: none;" src="https://www.youtube.com/embed/WQvueRcPAWY" class="content"
+            allowfullscreen></iframe>
     <div class="content"><h1 class="title">App Wall</h1></div>
     <iframe style="border: none;" src="https://google.github.io/material-design-icons/" class="content"/>
     </iframe>
@@ -29,10 +61,17 @@
 <script>
     $(function () {
         // initialize
-        var slide = $("#hi").initSlide();
-        slide.setNames(["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"]);
-        slide.setNameElement($('.app-bar-title'));
-        Waves.init();
+        var slide = $("#hi").initSlide({
+            name: {
+                names: ["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"],
+                nameElement: $('.app-bar-title')
+            },
+            autoSlide: false,
+            autoSlideTime: 3000
+        });
+
+//        slide.setNames(["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"]);
+//        slide.setNameElement($('.app-bar-title'));
 
         $("#left").on('click', function () {
             slide.changeSlide(slide.getPosition() - 1);
