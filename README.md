@@ -50,6 +50,23 @@ Now, we'll have to instantiate the slide. If you haven't noticed, one of the dep
 
 It'll load up everything for you and you'll be ready to use.
 
+### Parameters
+
+The `.initSlide()` method takes in a JSON object as a parameter:
+
+```
+
+{
+  name : {
+    names : [..., ...],
+    nameElement : $("")
+  },
+  autoSlide : [true/false],
+  autoSlideTime : [int]
+}
+
+```
+
 ## NOTE:
 
 The program is terrible in IE, and I have no idea why.
