@@ -67,6 +67,10 @@ The `.initSlide()` method takes in a JSON object as a parameter:
 
 ```
 
+#### What the parameters do
+
+The first parameter is `name`. Name is a function that Sliding Content has that enables you to have a element's ...
+
 ## NOTE:
 
 The program is terrible in IE, and I have no idea why.
