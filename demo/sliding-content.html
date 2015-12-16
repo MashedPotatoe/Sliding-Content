@@ -66,9 +66,8 @@
                 names: ["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"],
                 nameElement: $('.app-bar-title')
             },
-            autoSlide: true,
-            autoSlideTime: 3000,
-            autoSlideDelay: 1000,
+            autoSlide: false,
+            autoSlideTime: 3000
         });
 
 //        slide.setNames(["Material Overview", "App Wall", "Material Icons", "Top Talker", "Minecraft-ArmorStand"]);
@@ -80,18 +79,6 @@
 
         $("#right").on('click', function () {
             slide.changeSlide(slide.getPosition() + 1);
-        });
-
-        slide.addListener("contentchange", function () {
-            console.log('Content Changed to Slide ' + slide.getPosition());
-        });
-
-        slide.addListener("iframefocus", function () {
-            console.log("A iframe was focused");
-        });
-
-        slide.addListener("buttonclick", function () {
-            console.log("Button was clicked");
         });
     });
 </script>
